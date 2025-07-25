@@ -1,72 +1,169 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { BadgeCheck, Code, Briefcase } from "lucide-react";
 
-const roadmapData = [
-  // Technical Roles
-  { title: 'Frontend Developer', type: 'Technical', topics: ['HTML', 'CSS', 'JavaScript', 'React', 'Redux', 'Testing'] },
-  { title: 'Backend Developer', type: 'Technical', topics: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'Auth'] },
-  { title: 'Full Stack Developer', type: 'Technical', topics: ['MERN Stack', 'Deployment', 'CI/CD', 'Microservices'] },
-  { title: 'DevOps Engineer', type: 'Technical', topics: ['Linux', 'Docker', 'Kubernetes', 'CI/CD', 'AWS'] },
-  { title: 'Data Scientist', type: 'Technical', topics: ['Python', 'Pandas', 'Scikit-Learn', 'ML Models'] },
-  { title: 'Data Analyst', type: 'Technical', topics: ['Excel', 'SQL', 'Power BI', 'Statistics'] },
-  { title: 'Machine Learning Engineer', type: 'Technical', topics: ['ML Ops', 'TensorFlow', 'Model Deployment'] },
-  { title: 'Mobile App Developer', type: 'Technical', topics: ['Flutter', 'React Native', 'Android', 'iOS'] },
-  { title: 'Cybersecurity Analyst', type: 'Technical', topics: ['Network Security', 'Ethical Hacking', 'SIEM'] },
-  { title: 'Cloud Engineer', type: 'Technical', topics: ['AWS', 'Azure', 'GCP', 'Serverless', 'Terraform'] },
-  { title: 'Blockchain Developer', type: 'Technical', topics: ['Solidity', 'Ethereum', 'Smart Contracts'] },
-  { title: 'AI/ML Researcher', type: 'Technical', topics: ['Deep Learning', 'NLP', 'LLMs', 'GenAI'] },
-  { title: 'Game Developer', type: 'Technical', topics: ['Unity', 'C#', 'Game Physics', '3D Modeling'] },
-  { title: 'IoT Engineer', type: 'Technical', topics: ['Arduino', 'Raspberry Pi', 'Sensors', 'MQTT'] },
-  { title: 'AR/VR Developer', type: 'Technical', topics: ['Unity', 'Blender', 'ARKit', 'WebXR'] },
-
-  // Non-Technical Roles
-  { title: 'UI/UX Designer', type: 'Non-Tech', topics: ['Figma', 'User Research', 'Wireframes', 'Accessibility'] },
-  { title: 'Digital Marketing', type: 'Non-Tech', topics: ['SEO', 'Google Ads', 'Social Media', 'Analytics'] },
-  { title: 'Business Analyst', type: 'Non-Tech', topics: ['Requirement Gathering', 'Use Cases', 'JIRA', 'UML'] },
-  { title: 'Product Manager', type: 'Non-Tech', topics: ['Agile', 'Scrum', 'Roadmaps', 'Market Research'] },
-  { title: 'Project Manager', type: 'Non-Tech', topics: ['Scope Planning', 'Gantt Charts', 'Risk Management'] },
-  { title: 'Technical Writer', type: 'Non-Tech', topics: ['Documentation', 'Markdown', 'API Guides'] },
-  { title: 'HR Recruiter', type: 'Non-Tech', topics: ['ATS Systems', 'Sourcing', 'Interviewing', 'Onboarding'] },
-  { title: 'Salesforce Admin', type: 'Non-Tech', topics: ['CRM Basics', 'Workflows', 'Salesforce Lightning'] },
-  { title: 'Content Creator', type: 'Non-Tech', topics: ['YouTube', 'Reels', 'Monetization', 'Branding'] },
-  { title: 'Customer Success', type: 'Non-Tech', topics: ['CRM Tools', 'Feedback Handling', 'Retention'] },
-  { title: 'Operations Manager', type: 'Non-Tech', topics: ['Logistics', 'Supply Chain', 'ERP', 'KPIs'] },
-  { title: 'Finance Analyst', type: 'Non-Tech', topics: ['Excel', 'Budgeting', 'Forecasting', 'Auditing'] },
-  { title: 'Legal Analyst', type: 'Non-Tech', topics: ['Contracts', 'Compliance', 'Corporate Law'] },
-  { title: 'E-learning Designer', type: 'Non-Tech', topics: ['Storyboarding', 'LMS', 'Interactive Modules'] },
-  { title: 'Tech Support Specialist', type: 'Non-Tech', topics: ['Troubleshooting', 'Helpdesk', 'Remote Tools'] },
-];
+const roadmapData = {
+  Technical: [
+    {
+      title: "Frontend Developer",
+      topics: [
+        "HTML & Semantic Markup",
+        "CSS (Flex, Grid)",
+        "JavaScript ES6+",
+        "React & Hooks",
+        "Redux Toolkit",
+        "Testing (Jest, RTL)",
+        "Performance Optimization",
+      ],
+    },
+    {
+      title: "Backend Developer",
+      topics: [
+        "Node.js & Express",
+        "MongoDB & Mongoose",
+        "REST APIs & Postman",
+        "Authentication (JWT, OAuth)",
+        "Error Handling",
+        "Async/Await & Middleware",
+      ],
+    },
+    {
+      title: "DevOps Engineer",
+      topics: [
+        "Linux Basics",
+        "Docker & Containers",
+        "Kubernetes",
+        "CI/CD (GitHub Actions)",
+        "AWS Basics",
+        "Monitoring & Logging",
+      ],
+    },
+    {
+      title: "Data Scientist",
+      topics: [
+        "Python for Data",
+        "Pandas & NumPy",
+        "Scikit-Learn",
+        "Model Evaluation",
+        "NLP & Deep Learning",
+        "ML Pipelines",
+      ],
+    },
+    {
+      title: "Cloud Engineer",
+      topics: [
+        "AWS / GCP / Azure",
+        "Terraform",
+        "Serverless Architecture",
+        "Cloud Security",
+        "Kubernetes",
+        "Cloud Cost Optimization",
+      ],
+    },
+  ],
+  "Non-Tech": [
+    {
+      title: "UI/UX Designer",
+      topics: [
+        "Design Thinking",
+        "Wireframing (Figma)",
+        "Prototyping",
+        "Accessibility",
+        "User Testing",
+        "Design Systems",
+      ],
+    },
+    {
+      title: "Product Manager",
+      topics: [
+        "Agile & Scrum",
+        "User Stories",
+        "Product Roadmaps",
+        "Market Research",
+        "Stakeholder Management",
+      ],
+    },
+    {
+      title: "Business Analyst",
+      topics: [
+        "Data Analysis",
+        "Requirement Gathering",
+        "JIRA & UML",
+        "SWOT Analysis",
+        "Reporting Tools (Tableau)",
+      ],
+    },
+    {
+      title: "Digital Marketer",
+      topics: [
+        "SEO & SEM",
+        "Google Analytics",
+        "Email Marketing",
+        "Social Media Ads",
+        "Campaign Optimization",
+      ],
+    },
+    {
+      title: "Content Creator",
+      topics: [
+        "YouTube SEO",
+        "Reels/Shorts Strategy",
+        "Monetization",
+        "Content Planning",
+        "Brand Collaboration",
+      ],
+    },
+  ],
+};
 
 const LearningRoadmap = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [activeType, setActiveType] = useState(null);
 
-  const toggleCard = (index) => {
+  const toggleCard = (type, index) => {
+    setActiveType(type);
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="min-h-screen px-6 py-12 bg-gray-50">
-      <h1 className="text-4xl font-bold text-center mb-10 text-blue-700">📚 Explore Learning Roadmaps</h1>
+    <div className="min-h-screen px-4 py-12 bg-gray-50">
+      <h1 className="text-4xl font-bold text-center mb-4 text-blue-700">
+        📚 Explore Learning Roadmaps
+      </h1>
+      <p className="text-center text-gray-600 mb-12">
+        Click on a role to view its learning path. Choose your journey wisely!
+      </p>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {roadmapData.map((roadmap, index) => (
-          <div
-            key={index}
-            onClick={() => toggleCard(index)}
-            className="cursor-pointer bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition duration-300"
-          >
-            <h3 className="text-xl font-semibold text-blue-600">{roadmap.title}</h3>
-            <span className="text-sm text-gray-500">{roadmap.type}</span>
+      {Object.entries(roadmapData).map(([type, roles]) => (
+        <div key={type} className="mb-10 max-w-7xl mx-auto">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+            {type === "Technical" ? <Code className="w-5 h-5 text-blue-600" /> : <Briefcase className="w-5 h-5 text-green-600" />}
+            {type} Roles
+          </h2>
 
-            {openIndex === index && (
-              <ul className="mt-4 list-disc list-inside text-gray-700 text-sm">
-                {roadmap.topics.map((topic, i) => (
-                  <li key={i}>{topic}</li>
-                ))}
-              </ul>
-            )}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {roles.map((role, index) => (
+              <div
+                key={index}
+                onClick={() => toggleCard(type, index)}
+                className="cursor-pointer bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition duration-300"
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-blue-700">{role.title}</h3>
+                  <BadgeCheck className="w-5 h-5 text-green-500" />
+                </div>
+
+                {activeType === type && openIndex === index && (
+                  <ul className="mt-4 list-disc list-inside text-gray-700 text-sm space-y-1">
+                    {role.topics.map((topic, i) => (
+                      <li key={i}>{topic}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

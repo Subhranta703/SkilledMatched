@@ -10,7 +10,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-100 flex flex-col justify-between">
       {/* Hero Section */}
       <section className="text-center py-20 px-6 bg-blue-50 rounded-b-3xl shadow-md">
         <h1 className="text-4xl md:text-5xl font-extrabold text-blue-700 mb-4">
@@ -69,11 +69,48 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <section className="bg-white py-10 mt-10 text-center text-gray-600 border-t">
-        <p>&copy; {new Date().getFullYear()} SkillMatched · Built with ❤️</p>
-        <p>vibe coder SKN</p>
+      {/* Testimonials Section */}
+      <section className="bg-white py-16 px-6">
+        <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">What Users Say</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              name: "Ananya S.",
+              feedback: "SkillMatched helped me land my first internship by fixing my resume gaps!",
+            },
+            {
+              name: "Rohan P.",
+              feedback: "I followed the learning roadmap and cracked my frontend developer interview!",
+            },
+            {
+              name: "Megha D.",
+              feedback: "The career suggestions were spot on. I’m now confident about my goals.",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-blue-50 p-6 rounded-xl text-gray-700 shadow-sm hover:shadow-md transition"
+            >
+              <p className="text-md mb-3 italic">"{item.feedback}"</p>
+              <p className="font-semibold text-blue-600">— {item.name}</p>
+            </div>
+          ))}
+        </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="bg-blue-100 py-12 text-center">
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">Ready to transform your career?</h3>
+        <p className="text-gray-600 mb-6">Let SkillMatched guide your path with intelligent insights.</p>
+        <Link to="/analyze">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-semibold">
+            Get Started Now
+          </button>
+        </Link>
+      </section>
+
+      {/* Footer Section */}
+
     </div>
   );
 };
