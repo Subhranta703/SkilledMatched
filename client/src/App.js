@@ -12,8 +12,8 @@ import ResumeBuilder from './components/ResumeBuilder';
 import JobMatching from './components/JobMatcher';
 import CoverLetter from './pages/CoverLetter';
 import Footer from "./components/Footer";
-
-
+import SignupPage from './pages/Signup';
+import LoginPage from './pages/Login';
 function App() {
   return (
     <Router>
@@ -23,11 +23,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/analyze" element={<ResumeAnalyzer />} />
         <Route path="/roadmap" element={<LearningRoadmap />} />
-
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/roles" element={<JobRoles />} />
         <Route path="/about" element={<About />} />
         {/* <Route path="/resume-builder" element={<Resume />} /> */}
-       
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/job-matcher" element={<JobMatching />} />
         <Route path="/cover-letter" element={<CoverLetter />} />
         <Route path="/resume-builder" element={<ResumeBuilder />} />
