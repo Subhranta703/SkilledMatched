@@ -44,8 +44,8 @@ const Navbar = () => {
                 }`}
               >
                 <Link to="/resume-builder" className="block px-4 py-2 hover:bg-gray-100">Resume Builder</Link>
-                <Link to="/resume-analyzer" className="block px-4 py-2 hover:bg-gray-100">Resume Analyzer</Link>
-                <Link to="/job-matching" className="block px-4 py-2 hover:bg-gray-100">JD Matching</Link>
+                <Link to="/analyze" className="block px-4 py-2 hover:bg-gray-100">Resume Analyzer</Link>
+                <Link to="/job-matcher" className="block px-4 py-2 hover:bg-gray-100">JD Matching</Link>
                 <Link to="/cover-letter" className="block px-4 py-2 hover:bg-gray-100">Cover Letter Generator</Link>
               </div>
             </div>
@@ -84,8 +84,8 @@ const Navbar = () => {
               }`}
             >
               <Link to="/resume-builder" className="block hover:text-blue-600">Resume Builder</Link>
-              <Link to="/resume-analyzer" className="block hover:text-blue-600">Resume Analyzer</Link>
-              <Link to="/job-matching" className="block hover:text-blue-600">JD Matching</Link>
+              <Link to="/analyze" className="block hover:text-blue-600">Resume Analyzer</Link>
+              <Link to="/job-matcher" className="block hover:text-blue-600">JD Matching</Link>
               <Link to="/cover-letter" className="block hover:text-blue-600">Cover Letter Generator</Link>
             </div>
           </div>
