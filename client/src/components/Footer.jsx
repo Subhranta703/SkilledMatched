@@ -30,11 +30,18 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact Us</h3>
           <p className="text-sm">Email: support@skillmatched.com</p>
-          <div className="flex gap-4 mt-3">
-            <a href="#" className="hover:text-blue-400">LinkedIn</a>
-            <a href="#" className="hover:text-blue-400">GitHub</a>
-            <a href="#" className="hover:text-blue-400">Twitter</a>
-          </div>
+        
+<div className="flex gap-4 mt-3">
+  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+    LinkedIn
+  </a>
+  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+    GitHub
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
+    Twitter
+  </a>
+</div>
         </div>
       </div>
 
