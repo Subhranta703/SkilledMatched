@@ -1,22 +1,35 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import errorHandler from './middlewares/error.middleware.js';
-
-import authRoutes from './modules/auth/auth.routes.js';
-import resumeRoutes from './modules/resumes/resume.routes.js';
-import userRoutes from './modules/users/user.routes.js';
+import express from "express";
+import cors from "cors";
+import resumeRoutes from "./src/modules/resume-analysis/resume.routes.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev'));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/resumes', resumeRoutes);
-app.use('/api/users', userRoutes);
+app.use("/api/resume", resumeRoutes);
 
-app.use(errorHandler);
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "OK",
+    message: "Server is running",
+    time: new Date().toISOString()
+  });
+});
+
+app.get("/", (req, res) => {
+  res.json({
+    message: "SkillMatched API",
+    endpoints: [
+      "GET /api/health",
+      "GET /api/resume/test",
+      "POST /api/resume/analyze-text"
+    ]
+  });
+});
+
+app.use("*", (req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
 
 export default app;

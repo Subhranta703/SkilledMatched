@@ -1,10 +1,23 @@
 import express from 'express';
-import { getMe, updateMe } from './user.controller.js';
-import { protect } from '../../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
-router.get('/me', protect, getMe);
-router.put('/me', protect, updateMe);
+// Get all users (for testing)
+router.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Users route is working',
+    users: []
+  });
+});
+
+// Update user profile
+router.put('/profile', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Profile updated (mock)',
+    data: req.body
+  });
+});
 
 export default router;
