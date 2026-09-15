@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import HeroSection from '../components/home/Hero';
+//import HeroSection from '../components/home/Hero';
 import FeaturesSection from '../components/home/Features';
 import TestimonialsSection from '../components/home/Testimonials';
 import CTASection from '../components/home/CTA';

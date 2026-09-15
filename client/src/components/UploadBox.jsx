@@ -51,10 +51,13 @@ const UploadBox = ({ selectedRole }) => {
       setError("");
       setAnalysis(null);
 
-      const response = await axios.post(
-        "http://localhost:5000/api/resume/analyze",
-        formData
-      );
+      const API_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:5000";
+
+const response = await axios.post(
+  `${API_URL}/api/resume/analyze`,
+  formData
+);
 
       console.log("API response:", response.data);
 
@@ -76,17 +79,17 @@ const UploadBox = ({ selectedRole }) => {
     }
   };
 
-  const renderAnalysis = () => {
-    if (typeof analysis === "string") {
-      return analysis;
-    }
-
-    if (analysis && typeof analysis === "object") {
-      return JSON.stringify(analysis, null, 2);
-    }
-
-    return "No analysis received.";
-  };
+//   const renderAnalysis = () => {
+//     if (typeof analysis === "string") {
+//       return analysis;
+//     }
+// 
+//     if (analysis && typeof analysis === "object") {
+//       return JSON.stringify(analysis, null, 2);
+//     }
+// 
+//     return "No analysis received.";
+//   };
 
   return (
     <div className="mt-6">
