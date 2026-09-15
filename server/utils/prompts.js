@@ -1,61 +1,120 @@
-export const rolePrompts = {
-  HR: (resume) => `
-You are an HR recruiter.
-Review the resume below.
+const roleDescriptions = {
+  HR: `
+You are an experienced HR recruiter.
 Focus on:
-- Clarity
-- ATS friendliness
-- Keywords
-- Gaps in experience
-
-Resume:
-${resume}
-
-Give structured feedback in sections.
+- Resume clarity and professionalism
+- Relevant skills and experience
+- ATS compatibility
+- Communication and teamwork
+- Measurable achievements
+- Job readiness
 `,
 
-  SDE: (resume) => `
-You are a Senior Software Engineer.
-Review the resume below.
+  SDE: `
+You are a senior software engineer.
 Focus on:
-- Technical depth
-- Projects
-- Problem-solving
-- Code quality indicators
-
-Resume:
-${resume}
-
-Give structured feedback in sections.
+- Programming languages
+- Frameworks and libraries
+- Data structures and algorithms
+- Backend and frontend development
+- Database knowledge
+- API development
+- Project complexity
+- Code quality and problem-solving
 `,
 
-  MANAGER: (resume) => `
-You are an Engineering Manager.
-Review the resume below.
+  MANAGER: `
+You are an engineering manager.
 Focus on:
 - Ownership
-- Collaboration
-- Scalability thinking
-- Impact
-
-Resume:
-${resume}
-
-Give structured feedback in sections.
+- Leadership
+- Team collaboration
+- Project delivery
+- Problem-solving
+- Mentoring
+- Impact and measurable results
 `,
 
-  CEO: (resume) => `
-You are a Startup Founder / CEO.
-Review the resume below.
+  CEO: `
+You are a startup founder and CEO.
 Focus on:
-- Execution mindset
-- Learning speed
+- Initiative
+- Innovation
 - Business impact
-- Risk-taking ability
+- Product thinking
+- Ownership
+- Adaptability
+- Problem-solving
+`,
+};
+
+export const buildResumePrompt = (resumeText, role = "HR") => {
+  const perspective = roleDescriptions[role] || roleDescriptions.HR;
+
+  return `
+${perspective}
+
+Analyze the following resume from the selected perspective.
+
+Return ONLY valid JSON. Do not use Markdown. Do not include code fences.
+
+The JSON must follow this exact structure:
+
+{
+  "score": 0,
+  "summary": "A concise overall evaluation",
+  "strengths": [
+    {
+      "title": "Strength title",
+      "description": "Explanation based on the resume"
+    }
+  ],
+  "weaknesses": [
+    {
+      "title": "Weakness title",
+      "description": "Explanation based on the resume"
+    }
+  ],
+  "skills": {
+    "technical": [],
+    "soft": [],
+    "missingOrUnclear": []
+  },
+  "jobMatches": [
+    {
+      "role": "Suggested job role",
+      "matchPercentage": 0,
+      "reason": "Why this role fits"
+    }
+  ],
+  "suggestions": [
+    {
+      "priority": "High",
+      "title": "Improvement title",
+      "description": "Specific actionable recommendation"
+    }
+  ],
+  "atsFeedback": {
+    "score": 0,
+    "issues": [],
+    "recommendations": []
+  }
+}
+
+Rules:
+- Give a score from 0 to 100.
+- Do not invent experience, skills, education, companies, or achievements.
+- If information is missing, mention that it is missing.
+- Job match percentages must be estimates based only on the resume.
+- Provide 3 to 5 strengths.
+- Provide 3 to 5 weaknesses.
+- Provide 3 to 5 job matches.
+- Provide 4 to 6 practical suggestions.
+- Keep the response specific and useful.
+
+Selected perspective: ${role}
 
 Resume:
-${resume}
-
-Give concise but sharp feedback.
-`
+${resumeText}
+`;
 };
